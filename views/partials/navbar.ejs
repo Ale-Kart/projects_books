@@ -1,0 +1,55 @@
+<style>
+    .alert-danger{
+        display: none;
+        position: fixed;
+        right: 1%;
+        top: 10em;
+        z-index: 999;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid container">
+        <a class="navbar-brand" href="/">Biblioteca de Livros</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/livros">Livros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Autores">Autores</a>
+                </li>
+            </ul>
+            <form class="d-flex" method="get" action="/Buscar/procurar">
+                <input class="form-control me-2" id="txtSearchNav" type="search" placeholder="Search" name="index" />
+                <button class="btn btn-outline-success" id="btnSearchNav" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle-fill"></i> Atenção! Preencha o campo corretamente.    
+</div>
+<script>
+    const txtSearchNav = document.querySelector('#txtSearchNav');
+    const btnSearchNav = document.querySelector('#btnSearchNav');
+    const alert_danger = document.querySelector('.alert-danger');
+    btnSearchNav.addEventListener('click', (e) =>{
+        if (txtSearchNav.value == "") {
+            e.preventDefault();
+            console.log("erro na busca");
+            alert_danger.style.display = "block";
+            setTimeout(() => {
+                alert_danger.style.display = "none";
+            }, 4000);
+        }
+    });
+</script>

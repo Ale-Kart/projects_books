@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Livros {
+  livro_id          String @id @default(uuid())
+  livro_description String
+  livro_title       String
+  livro_views       Int    @default(0)
+  livro_like        Int    @default(0)
+  LivrosToCategorias LivrosToCategorias[]
+
+  autor_id String
+  autor    Autor  @relation(fields: [autor_id], references: [autor_id])
+}
+
+model Autor {
+  autor_id          String @id @default(uuid())
+  autor_nome        String
+  autor_email       String
+  autor_description String
+  autor_like        Int    @default(0)
+
+  Livros Livros[]
+
+  Comentarios_Autor Comentarios_Autor[]
+}
+
+model Categorias {
+  categoria_id       String               @id @default(uuid())
+  categoria_nome     String
+  LivrosToCategorias LivrosToCategorias[]
+}
+
+model LivrosToCategorias {
+  livro_categoria_id String     @id @default(uuid())
+  livros_id          String
+  livro              Livros     @relation(fields: [livros_id], references: [livro_id])
+  categorias_id      String
+  categoria          Categorias @relation(fields: [categorias_id], references: [categoria_id])
+
+}
+
+model Comentarios_Autor {
+  comentario_autor_id String @id @default(uuid())
+  comentario_text     String
+
+  autor_id String
+  autor    Autor  @relation(fields: [autor_id], references: [autor_id])
+}

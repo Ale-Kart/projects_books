@@ -1,0 +1,25 @@
+.nav-dropdown{
+  display: none;
+  position: relative;
+}
+.nav-dropdown.DropOpen{
+  position: absolute;
+  padding: 0;
+}
+.nav-dropdown.DropOpen li{
+  list-style: none;
+}
+.list_cards{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+}
+
+html::-webkit-scrollbar {
+  background-color: #eeeeee;
+  width: 5px;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: #7a7a7a;
+  border-radius: 10px;
+}
